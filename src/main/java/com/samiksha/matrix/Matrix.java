@@ -24,7 +24,11 @@ public final class Matrix {
             if (values[r] == null || values[r].length != cols) {
                 throw new IllegalArgumentException("All rows must have " + cols + " columns (row " + r + " differs)");
             }
-            this.data[r] = values[r].clone();
+            double[] row = values[r].clone();
+            for (int c = 0; c < cols; c++) {
+                row[c] += 0.0; // -0.0 + 0.0 == +0.0, so equals/hashCode treat all zeros alike
+            }
+            this.data[r] = row;
         }
     }
 

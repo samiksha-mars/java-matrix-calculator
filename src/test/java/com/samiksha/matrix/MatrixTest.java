@@ -184,5 +184,13 @@ class MatrixTest {
             assertEquals(m(r(1, 2)).hashCode(), m(r(1, 2)).hashCode());
             assertNotEquals(m(r(1, 2)), m(r(2, 1)));
         }
+
+        @Test
+        void negativeZeroEqualsZero() {
+            Matrix negated = m(r(0, 2)).multiply(-1);
+            assertEquals(m(r(0, -2)), negated);
+            assertEquals(m(r(0, -2)).hashCode(), negated.hashCode());
+            assertEquals(0.0, negated.get(0, 0));
+        }
     }
 }
